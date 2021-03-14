@@ -37,7 +37,10 @@ fn runs_and_outputs_all_integration_test_services() -> Result {
     )?;
 
     let mut cmd = Command::cargo_bin("docker-compose-test")?;
-    cmd.arg("-f").arg(docker_compose.path()).arg("-f").arg(integration_tests.path());
+    cmd.arg("-f")
+        .arg(docker_compose.path())
+        .arg("-f")
+        .arg(integration_tests.path());
 
     cmd.assert()
         .success()
@@ -75,7 +78,10 @@ fn runs_and_outputs_specific_integration_test_service() -> Result {
     )?;
 
     let mut cmd = Command::cargo_bin("docker-compose-test")?;
-    cmd.arg("-f").arg(docker_compose.path()).arg("-f").arg(integration_tests.path())
+    cmd.arg("-f")
+        .arg(docker_compose.path())
+        .arg("-f")
+        .arg(integration_tests.path())
         .arg("hello_1");
 
     cmd.assert()
@@ -114,11 +120,13 @@ fn fails_and_outputs_on_test_failure() -> Result {
     )?;
 
     let mut cmd = Command::cargo_bin("docker-compose-test")?;
-    cmd.arg("-f").arg(docker_compose.path()).arg("-f").arg(integration_tests.path()).arg("-v");
+    cmd.arg("-f")
+        .arg(docker_compose.path())
+        .arg("-f")
+        .arg(integration_tests.path())
+        .arg("-v");
 
-    cmd.assert()
-        .failure()
-        .stdout(contains("hello 2"));
+    cmd.assert().failure().stdout(contains("hello 2"));
 
     Ok(())
 }
@@ -151,7 +159,10 @@ fn verbose_includes_other_service_output() -> Result {
     )?;
 
     let mut cmd = Command::cargo_bin("docker-compose-test")?;
-    cmd.arg("-f").arg(docker_compose.path()).arg("-f").arg(integration_tests.path());
+    cmd.arg("-f")
+        .arg(docker_compose.path())
+        .arg("-f")
+        .arg(integration_tests.path());
     cmd.arg("-v");
 
     cmd.assert()
