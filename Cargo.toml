@@ -1,0 +1,24 @@
+[package]
+name = "docker-compose-test"
+version = "0.1.0"
+authors = ["Evan Tatarka <evan@tatarka.me>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+pico-args = { version = "0.4.0", default-features = false }
+minimal-yaml = "0.1.5"
+tempfile = "3.2.0"
+thiserror = "1.0.24"
+
+[dev-dependencies]
+assert_cmd = "1.0.3"
+predicates = "1.0"
+serial_test = "0.5.1"
+
+[profile.release]
+opt-level = 'z'  # Optimize for size.
+lto = true
+codegen-units = 1
+panic = 'abort'
